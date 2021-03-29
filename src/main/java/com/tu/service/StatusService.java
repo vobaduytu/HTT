@@ -12,7 +12,7 @@ public interface StatusService {
 
     Optional<Status> findById(long id);
 
-    void Save(Status status);
+    void save(Status status);
 
     void delete(long id);
 }

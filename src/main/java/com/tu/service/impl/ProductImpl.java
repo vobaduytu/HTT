@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class ProductImpl implements ProductService {
     @Autowired
@@ -26,12 +27,12 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public void Save(Product product) {
- productRepository.save(product);
+    public void saves(Product product) {
+        productRepository.save(product);
     }
 
     @Override
     public void delete(long id) {
-productRepository.deleteById(id);
+        productRepository.deleteById(id);
     }
 }

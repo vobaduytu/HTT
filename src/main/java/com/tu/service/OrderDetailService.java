@@ -12,7 +12,7 @@ public interface OrderDetailService {
 
     Optional<OrderDetail> findById(long id);
 
-    void Save(OrderDetail orderDetail);
+    void save(OrderDetail orderDetail);
 
     void delete(long id);
 }

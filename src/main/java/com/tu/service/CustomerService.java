@@ -12,7 +12,7 @@ public interface CustomerService {
 
     Optional<Customer> findById(long id);
 
-    void Save(Customer customer);
+    void save(Customer customer);
 
     void delete(long id);
 }

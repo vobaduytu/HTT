@@ -12,7 +12,7 @@ public interface OrderService {
 
     Optional<Order> findById(long id);
 
-    void Save(Order order);
+    void save(Order order);
 
     void delete(long id);
 }

@@ -26,7 +26,7 @@ public class OrderDetailImpl implements OrderDetailService {
     }
 
     @Override
-    public void Save(OrderDetail orderDetail) {
+    public void save(OrderDetail orderDetail) {
        orderDetailRepository.save(orderDetail);
     }
 

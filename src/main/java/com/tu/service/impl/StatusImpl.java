@@ -27,7 +27,7 @@ public class StatusImpl implements StatusService {
     }
 
     @Override
-    public void Save(Status status) {
+    public void save(Status status) {
         statusRepository.save(status);
     }
 

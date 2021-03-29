@@ -12,7 +12,7 @@ public interface RoleService {
 
     Optional<Role> findById(long id);
 
-    void Save(Role role);
+    void save(Role role);
 
     void delete(long id);
 }

@@ -50,9 +50,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "create_id")
-//    @JoinColumn(name = "update_id")
-//    @JoinColumn(name = "delete_id")
-//    @JoinColumn(name = "restore_id")
+
     private Customer customerCreate;
 
     @ManyToOne

@@ -28,8 +28,8 @@ public class Customer {
     @NotEmpty
     private String image;
     @NotEmpty
-    private LocalDateTime dateOfBirth;
-    @NotEmpty
+    private String dateOfBirth;
+
     @Column(name = "create_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
