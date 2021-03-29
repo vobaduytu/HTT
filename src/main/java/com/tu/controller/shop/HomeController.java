@@ -22,7 +22,4 @@ private CategoryService categoryService;
         model.addAttribute("categories", categoryService.showAll(pageable));
         return "shop/home";
     }
-
-
-
 }

@@ -1,6 +1,9 @@
 package com.tu.controller.shop;
 
 
+import com.tu.model.Product;
+import com.tu.repository.ProductRepository;
+import com.tu.service.CategoryService;
 import com.tu.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +17,16 @@ public class ProductPageController {
 
     @Autowired
     private ProductService productService;
-
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private ProductRepository productRepository;
     @GetMapping("/productPage/{id}")
     public String showProductPage(@PathVariable Long id, Model model, Pageable pageable){
-        model.addAttribute("product",productService.findById(id));
+        Product product = productService.findById(id).orElseThrow();
+        model.addAttribute("product",product);
+        model.addAttribute("categories", categoryService.showAll(pageable));
+        model.addAttribute("listProduct", productRepository.findAllByCategoryId(product.getCategory().getId(),pageable));
         return "shop/product-page";
     }
 }
