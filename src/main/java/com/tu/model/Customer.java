@@ -20,6 +20,8 @@ public class Customer {
     @NotEmpty
     private String password;
     @NotEmpty
+    private String configPassword;
+    @NotEmpty
     private String fullName;
     @NotEmpty
     private String gender;
