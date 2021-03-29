@@ -102,15 +102,15 @@ public class CategoryController {
     }
 
 
-    @PostMapping("/searchCategory")
-    public String search(@RequestParam Optional<String>  search , Model model,@PageableDefault(size = 5) Pageable pageable, RedirectAttributes attributes){
-        Page<Category> categories = categoryService.findAllByNameContaining(search.get(),pageable);
-        if (!categories.isEmpty()){
-            model.addAttribute("list", categories);
-            return "admin/manager/category/list-category";
-        }else {
-            attributes.addFlashAttribute("mess","Không tìm thấy dữ liệu nào...!!!s");
-            return "redirect:/category";
-        }
-    }
+//    @PostMapping("/searchCategory")
+//    public String search(@RequestParam Optional<String>  search , Model model,@PageableDefault(size = 5) Pageable pageable, RedirectAttributes attributes){
+//        Page<Category> categories = categoryService.findAllByNameContaining(search.get(),pageable);
+//        if (!categories.isEmpty()){
+//            model.addAttribute("list", categories);
+//            return "admin/manager/category/list-category";
+//        }else {
+//            attributes.addFlashAttribute("mess","Không tìm thấy dữ liệu nào...!!!");
+//            return "redirect:/category";
+//        }
+//    }
 }
