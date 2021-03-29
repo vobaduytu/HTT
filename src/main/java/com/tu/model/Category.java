@@ -46,12 +46,4 @@ public class Category {
         return this.getName();
     }
 
-//    @Override
-//    public boolean equals(Object object){
-//        if (object==null) return false;
-//        if (object==this) return true;
-//        Category cat = (Category) object;
-//
-//        return cat.getName().equals(this.getName()) && cat.getDescription().equals(this.getDescription());
-//    }
 }

@@ -44,7 +44,7 @@ public class Customer {
     @Column(name = "restore_date")
     private LocalDateTime restoreDate;
 
-
+    private boolean deleted;
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;

@@ -103,5 +103,16 @@ public class ProductController {
         model.addAttribute("category", categoryRepository.findAll());
         return "admin/manager/product/view-product";
     }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable long id , RedirectAttributes redirectAttributes){
+        productService.delete(id);
+        redirectAttributes.addFlashAttribute("mess","xóa thành công");
+        return "redirect:/product";
+    }
+    @GetMapping("/showDeleteProduct")
+    public String showDelete(Model model, Pageable pageable) {
+        model.addAttribute("list", productRepository.findAllByDeletedIsTrue(pageable));
+        return "admin/manager/product/list-delete-product";
+    }
 
 }

@@ -12,12 +12,14 @@
         <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class="tim-icons icon-simple-remove"></i>
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -39,7 +41,7 @@
                             <h3 class="card-title"> <i class="fas fa-trash" style="margin-left: 30%">Trash user</i></h3>
                         </div>
                         <div class="card-body">
-                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/addCategory}"
+                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/customer/showDeleteCustomer}"
                                                                                                 style="color: white !important;">Chi tiết</a></span>
                         </div>
                     </div>
@@ -50,7 +52,7 @@
                             <h3 class="card-title"> <i class="fas fa-trash" style="margin-left: 30%">Trash Category</i></h3>
                         </div>
                         <div class="card-body">
-                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/addCategory}"
+                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/category/showDeleteCategory}"
                                                                                                 style="color: white !important;">Chi tiết</a></span>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
                             <h3 class="card-title"><i class="fas fa-trash" style="margin-left: 30%">Trash Product</i></h3>
                         </div>
                         <div class="card-body">
-                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/addCategory}"
+                            <span class=" btn btn-fill btn-primary" style="margin-left: 30%"><a th:href="@{/product/showDeleteProduct}"
                                                                                                 style="color: white !important;">Chi tiết</a></span>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ public class ProductImpl implements ProductService {
 
     @Override
     public Page<Product> showAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
+        return productRepository.findAllByDeletedIsFalse(pageable);
     }
 
     @Override

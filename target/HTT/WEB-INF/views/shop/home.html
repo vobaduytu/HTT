@@ -85,7 +85,7 @@
                                     <img class="img-responsive" th:src="${product.image}">
                                 </a>
                                 <div class="product-title margin-bottom-5">
-                                    <a href="productpage.html" th:utext="${product.name}"></a>
+                                    <a th:href="@{/productPage/{id}(id=${product.id})}" th:utext="${product.name}"></a>
                                 </div>
                                 <div class="product-price" th:utext="${product.price}"><sup>USD</sup>
                                 </div>

@@ -87,7 +87,15 @@ public class CustomerController {
 
 
     @GetMapping("/delete/{id}")
-    public String doDelete() {
-        return "user-list";
+    public String doDelete(@PathVariable long id,RedirectAttributes redirectAttributes) {
+        customerService.delete(id);
+        redirectAttributes.addFlashAttribute("mess", "xóa thành công");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/showDeleteCustomer")
+    public String showDelete(Model model, Pageable pageable) {
+        model.addAttribute("list", customerRepository.findAllByDeletedIsTrue(pageable));
+        return "admin/manager/customer/list-delete-customer";
     }
 }
