@@ -57,11 +57,11 @@
                                         <td th:text="${customer.dateOfBirth}"></td>
                                         <td th:text="${customer.createDate}"></td>
                                         <td th:text="${customer.role.getName()}"></td>
-                                        <td><a th:href="@{customer/reset/{id}/(id=${customer.id})}"
+                                        <td><a th:href="@{/customer/reset/{id}/(id=${customer.id})}"
                                                onclick="return confirm('co chac muon khoi phuc')"><i
                                                 class="fas fa-undo-alt"></i></a>
                                         </td>
-                                        <td><a th:href="@{customer/deleteCustomer/{id}/(id=${customer.id})}"
+                                        <td><a th:href="@{/customer/deleteCustomer/{id}/(id=${customer.id})}"
                                                onclick="return confirm('co chac muon xoa')"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         </td>

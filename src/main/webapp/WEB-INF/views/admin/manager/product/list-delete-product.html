@@ -55,11 +55,11 @@
                                         <td th:text="${product.price}"></td>
                                         <td th:text="${product.createDate}"></td>
                                         <td th:text="${product.category.name}"></td>
-                                        <td><a th:href="@{product/reset/{id}/(id=${product.id})}"
+                                        <td><a th:href="@{/product/reset/{id}/(id=${product.id})}"
                                                onclick="return confirm('co chac muon khoi phuc')"><i
                                                 class="fas fa-undo-alt"></i></a>
                                         </td>
-                                        <td><a th:href="@{product/deleteProduct/{id}/(id=${product.id})}"
+                                        <td><a th:href="@{/product/deleteProduct/{id}/(id=${product.id})}"
                                                onclick="return confirm('co chac muon xoa')"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         </td>

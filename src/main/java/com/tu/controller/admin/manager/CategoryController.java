@@ -2,8 +2,11 @@ package com.tu.controller.admin.manager;
 
 
 import com.tu.model.Category;
+import com.tu.model.Product;
 import com.tu.repository.CategoryRepository;
+import com.tu.repository.ProductRepository;
 import com.tu.service.CategoryService;
+import com.tu.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +28,8 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("")
     public String showList(Model model, Pageable pageable) {
@@ -107,12 +112,23 @@ public class CategoryController {
         model.addAttribute("list", categoryRepository.findAllByDeletedIsTrue(pageable));
         return "admin/manager/category/list-delete-category";
     }
+
+    @GetMapping("/reset/{id}")
+    public String reset(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        Category category = categoryService.findById(id).orElseThrow();
+        category.setDeleted(false);
+        categoryService.save(category);
+//        // loi ve list product co cung cat id
+//        List<Product> product = productRepository.findAllByCategoryId(id);
+//        // chay vong lap qua list
+//        for (Product product1 : product) {
+//                product1.setDeleted(false);
+//                productRepository.save(product1);
+//        }
+//        // set isDelete cua moi cai thanh false
 //
-//    @GetMapping("/reset/{id}")
-//    public String reset(@PathVariable long id, Pageable pageable, RedirectAttributes redirectAttributes) {
-//        categoryService.findById(id);
-//        categoryRepository.findAllByDeletedIsTrue(pageable);
-//        redirectAttributes.addFlashAttribute("mess", "khôi phục thành công");
-//        return "redirect:/category/showDeleteCategory";
-//    }
+//        // save all
+        redirectAttributes.addFlashAttribute("mess", "khôi phục thành công");
+        return "redirect:/category/showDeleteCategory";
+    }
 }

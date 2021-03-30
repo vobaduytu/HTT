@@ -1,6 +1,7 @@
 package com.tu.controller.shop;
 
 
+import com.tu.repository.CategoryRepository;
 import com.tu.service.CategoryService;
 import com.tu.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,14 @@ public class HomeController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryRepository categoryRepository;
 @Autowired
 private CategoryService categoryService;
     @GetMapping("/home")
     public String showHome(Model model, Pageable pageable){
         model.addAttribute("list",productService.showAll(pageable));
-        model.addAttribute("categories", categoryService.showAll(pageable));
+        model.addAttribute("categories",categoryRepository.findByDeletedIsFalse (pageable));
         return "shop/home";
     }
 }

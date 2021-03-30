@@ -1,6 +1,6 @@
 package com.tu.controller.admin.manager;
 
-import com.tu.model.Category;
+
 import com.tu.model.Product;
 import com.tu.repository.CategoryRepository;
 import com.tu.repository.ProductRepository;
@@ -74,21 +74,21 @@ public class ProductController {
     }
 
     @PostMapping("/edit")
-    public String doEdit(@Valid @ModelAttribute("product") Product product,BindingResult result, RedirectAttributes attributes){
+    public String doEdit(@Valid @ModelAttribute("product") Product product, BindingResult result, RedirectAttributes attributes) {
         try {
-            if (result.hasErrors()){
+            if (result.hasErrors()) {
                 return "admin/manager/product/edit-product";
             }
 
             List<Product> products = productRepository.findAll();
-            for (Product product1 : products){
-                if ((product.getName()).equals(product1.getName()) && (product.getId()) != product1.getId()){
-                    attributes.addFlashAttribute("mess","Tên đã tồn tại...!!!");
+            for (Product product1 : products) {
+                if ((product.getName()).equals(product1.getName()) && (product.getId()) != product1.getId()) {
+                    attributes.addFlashAttribute("mess", "Tên đã tồn tại...!!!");
                     return "redirect:/product";
                 }
             }
             productService.saves(product);
-            attributes.addFlashAttribute("mess","Thay đổi thành công...!!!");
+            attributes.addFlashAttribute("mess", "Thay đổi thành công...!!!");
         } catch (Exception e) {
             e.getMessage();
             attributes.addFlashAttribute("mess", "Error");
@@ -99,20 +99,42 @@ public class ProductController {
     @GetMapping("/view/{id}")
     public String showView(@PathVariable long id, Model model) {
         model.addAttribute("product", productService.findById(id));
-        model.addAttribute("list",productRepository.findAll());
+        model.addAttribute("list", productRepository.findAll());
         model.addAttribute("category", categoryRepository.findAll());
         return "admin/manager/product/view-product";
     }
+
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id , RedirectAttributes redirectAttributes){
+    public String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
         productService.delete(id);
-        redirectAttributes.addFlashAttribute("mess","xóa thành công");
+        redirectAttributes.addFlashAttribute("mess", "xóa thành công");
         return "redirect:/product";
     }
+
     @GetMapping("/showDeleteProduct")
     public String showDelete(Model model, Pageable pageable) {
         model.addAttribute("list", productRepository.findAllByDeletedIsTrue(pageable));
         return "admin/manager/product/list-delete-product";
     }
 
+    @GetMapping("/reset/{id}")
+    public String reset(@PathVariable long id, RedirectAttributes redirectAttributes) {
+
+        Product product = productService.findById(id).orElseThrow();
+        if (!product.getCategory().isDeleted() ) {
+            product.setDeleted(false);
+            productService.saves(product);
+            redirectAttributes.addFlashAttribute("mess", "khôi phục thành công");
+            return "redirect:/product/showDeleteProduct";
+        }
+
+      else
+            redirectAttributes.addFlashAttribute("mess", "Bạn cần khôi phục Category trước");
+            return "redirect:/category/showDeleteCategory";
+
+
+//      else
+//          redirectAttributes.addFlashAttribute("mess", "Bạn cần khôi phục User trước");
+//          return "redirect:/customer/showDeleteCustomer";
+    }
 }

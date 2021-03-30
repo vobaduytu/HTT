@@ -2,6 +2,7 @@ package com.tu.controller.shop;
 
 
 import com.tu.model.Product;
+import com.tu.repository.CategoryRepository;
 import com.tu.repository.ProductRepository;
 import com.tu.service.CategoryService;
 import com.tu.service.ProductService;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProductPageController {
-
+@Autowired
+private CategoryRepository categoryRepository;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -25,7 +27,7 @@ public class ProductPageController {
     public String showProductPage(@PathVariable Long id, Model model, Pageable pageable){
         Product product = productService.findById(id).orElseThrow();
         model.addAttribute("product",product);
-        model.addAttribute("categories", categoryService.showAll(pageable));
+        model.addAttribute("categories", categoryRepository.findByDeletedIsFalse(pageable));
         model.addAttribute("listProduct", productRepository.findAllByCategoryId(product.getCategory().getId(),pageable));
         return "shop/product-page";
     }

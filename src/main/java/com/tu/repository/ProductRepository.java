@@ -17,6 +17,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     Page<Product> findAllByCategoryId(Long id ,Pageable pageable);
 
+    List<Product> findAllByCategoryId(Long id );
 
     @Modifying
     @Query("update Product p set p.deleted = true where p.category.id = :categoryId")

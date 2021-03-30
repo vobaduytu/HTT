@@ -50,11 +50,11 @@
                                         <td th:text="${category.name}"></td>
                                         <td th:text="${category.description}"></td>
                                         <td th:text="${category.createDate}"></td>
-                                        <td><a th:href="@{category/reset/{id}/(id=${category.id})}"
+                                        <td><a th:href="@{/category/reset/{id}/(id=${category.id})}"
                                                onclick="return confirm('co chac muon khoi phuc')"><i
-                                                class="fas fa-trash-restore-alt"></i></a>
+                                                class="fas fa-undo-alt  "></i></a>
                                         </td>
-                                        <td><a th:href="@{category/deleteCategory/{id}/(id=${category.id})}"
+                                        <td><a th:href="@{/category/deleteCategory/{id}/(id=${category.id})}"
                                                onclick="return confirm('co chac muon xoa')"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         </td>

@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category,Long> {
     List<Category> findByName(String name);
-
     Page<Category> findAllByNameContaining(String name, Pageable pageable);
 
     @Modifying
@@ -23,5 +22,7 @@ public interface CategoryRepository extends JpaRepository<Category,Long> {
     Page<Category> findByDeletedIsFalse(Pageable pageable);
 
     Page<Category> findAllByDeletedIsTrue(Pageable pageable);
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.tu.controller.admin.manager;
 
+import com.tu.model.Category;
 import com.tu.model.Customer;
 import com.tu.repository.CustomerRepository;
 import com.tu.repository.RoleRepository;
@@ -97,5 +98,14 @@ public class CustomerController {
     public String showDelete(Model model, Pageable pageable) {
         model.addAttribute("list", customerRepository.findAllByDeletedIsTrue(pageable));
         return "admin/manager/customer/list-delete-customer";
+    }
+    @GetMapping("/reset/{id}")
+    public String reset(@PathVariable long id, RedirectAttributes redirectAttributes) {
+       Customer customer = customerService.findById(id).orElseThrow();
+        customer.setDeleted(false);
+        customerService.save(customer);
+
+        redirectAttributes.addFlashAttribute("mess", "khôi phục thành công");
+        return "redirect:/customer/showDeleteCustomer";
     }
 }
